@@ -1,12 +1,14 @@
 const express= require('express');
-// const mongoose=require('mongoose');
+const mongoose=require('mongoose');
 // creating a port
+const expressLayouts = require('express-ejs-layouts');
 const port=8000;
 const app=express();
 
-// const db=require('./config/mongoose');
+const db=require('./config/mongoose');
 
 // setting up routes path
+app.use(expressLayouts);
 app.use('/',require('./routes'));
 
 
