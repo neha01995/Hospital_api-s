@@ -1,6 +1,6 @@
 const mongoose=require('mongoose');
 
-
+// created doctor schema 
 const doctorSchema=new mongoose.Schema({
     email:{
         type:String,
@@ -14,7 +14,13 @@ const doctorSchema=new mongoose.Schema({
     password:{
         type:String,
         required:true,
-    },
+    },  
+    
+    // here is patient ref in doctor schema .
+    patient:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Patient'
+    }]
 
 }, {timestamps:true
 });
