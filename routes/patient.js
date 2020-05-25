@@ -1,9 +1,14 @@
 const express= require('express');
+
+const passport=require('passport');
 const router= express.Router();
 const patientController = require('../controllers/patient_controllers');
-router.get('/register',patientController.register_patient);
 
-router.get('/all_reports',patientController.all_reports);
-router.get('/patient_report',patientController.patient_report);
+
+
+router.post('/:id/create_report',passport.authenticate('jwt',{session:false}),PatientsController.createReport);
+router.get('/:id/all_reports',passport.authenticate('jwt',{session:false}),PatientsController.get_All_Reports);
+router.get('/reports/:status',passport.authenticate('jwt',{session:false}),PatientsController.status);
+
 
 module.exports= router;
