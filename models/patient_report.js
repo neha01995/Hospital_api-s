@@ -7,10 +7,14 @@ const ReportSchema=new mongoose.Schema({
         required:true,
         enum:['Negative','Travelled-Quarantine','Symptoms-Quarantine','Positive-Admit']
     },
+
+       // here is patient ref in report schema .
     patient:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Patient'
     },
+
+       // here is doctor ref in report schema .
     doctor:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Doctor'
