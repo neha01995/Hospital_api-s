@@ -1,40 +1,29 @@
 const express= require('express');
-const cookieParser = require('cookie-parser');
-const mongoose=require('mongoose');
+const app=express();
 
-// require passport
-const passport = require('passport');
+const mongoose=require('mongoose');
 
 //require body-parser
 const bodyParser= require('body-parser');
-// creating a port
-const expressLayouts = require('express-ejs-layouts');
-const port=8000;
-const app=express();
-
-// connected with database which present in config folder
-const db=require('./config/mongoose');
 
 // body parser convert file into json format and act as a middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+// creating a port
+const port=8000;
 
-app.use(express.urlencoded());
-app.use(cookieParser());
-const Doctor = require('./models/doctor');
-const Patient = require('./models/patient');
+// connected with database which present in config folder
+const db=require('./config/mongoose');
 
+// require passport
+const passport = require('passport');
+const passportJWT = require('./config/passport-jwt-strategy');
 
-
+// initilize passport
+app.use(passport.initialize());
 
 // setting up routes path
-app.use(expressLayouts);
 app.use('/',require('./routes'));
-
-
-// set view engine and views folder
-app.set('view engine','ejs');
-app.set('views','./views');
 
 app.listen(port,function(err){
     if(err){
