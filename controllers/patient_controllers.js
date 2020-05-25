@@ -3,9 +3,12 @@ const Report=require('../models/patient_report');
 const Doctor=require('../models/doctor');
 const Patient=require('../models/patient');
 
+// doctor created patient report
 module.exports.createReport=async function(req,res)
 {
     try{
+
+        // req.user is used for web token to identify the user
         let doctor=await Doctor.findOne({_id:req.user});
         let patient=await Patient.findById(req.params.id);
         if(patient)
@@ -32,6 +35,7 @@ module.exports.createReport=async function(req,res)
     }
 } 
 
+// all the reports
 module.exports.get_All_Reports=async function(req,res)
 {
     try {
@@ -51,7 +55,7 @@ module.exports.get_All_Reports=async function(req,res)
     }
 }
 
-
+// status of report
 module.exports.status=async function(req,res)
 {
     try{

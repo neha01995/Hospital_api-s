@@ -8,9 +8,9 @@ const patientSchema=new mongoose.Schema({
         required:true,
     },
     phone:{
-        type:Number,
+        type:String,
         required:true,
-        unique=true
+        unique:true
     },
       // here is reference of doctor in patient schema
     doctor:{
